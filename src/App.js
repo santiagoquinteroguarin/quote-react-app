@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import Summary from './components/Summary';
+import Result from './components/Result';
+import './components/Spinner.js';
 // ?1.
 import styled from '@emotion/styled';
+import Spinner from './components/Spinner.js';
 
 // ?2.
 const Container = styled.div`
@@ -27,7 +30,9 @@ function App() {
     }
   });
 
-  const { data } = summary;
+  const [loading, setSavedLoading] = useState(false);
+
+  const { quote , data } = summary;
 
   return (
     // ?3.
@@ -39,11 +44,21 @@ function App() {
       <ContainerForm>
         <Form
           setSavedSummary={setSavedSummary}
+          setSavedLoading={setSavedLoading}
         />
         
+        {loading ? <Spinner/> : null}
+
         <Summary
           data={data}
         />
+
+        {!loading ? 
+          <Result 
+            quote={quote}
+          /> : null
+        }
+        
       </ContainerForm>
     </Container>
   );

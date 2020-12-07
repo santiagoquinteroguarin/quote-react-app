@@ -61,7 +61,7 @@ const Error = styled.div`
 `;
 
 // ?1.
-const Form = ({setSavedSummary}) => {
+const Form = ({setSavedSummary, setSavedLoading}) => {
 
     // ?8. 
     const [data, setSAvedData] = useState({
@@ -109,18 +109,26 @@ const Form = ({setSavedSummary}) => {
             Asiatico: 5%
             Europeo: 30%    
         */
-        result = calculateBrand(marca);
+        result = calculateBrand(marca) * result;
 
         // ?16. Basico aumenta 20%
         // Completo 50%
         const incrementPlan = getPlan(plan);
         result = parseFloat(incrementPlan * result).toFixed(2);
+        
+        setSavedLoading(true);
 
-        // ?17. Total
-        setSavedSummary({
-            quote: result,
-            data
-        })
+        setTimeout(() => {
+            // Elimina spinner
+            setSavedLoading(false);
+
+            // ?17. Total - pasa la info al componente principal
+            setSavedSummary({
+                quote: result,
+                data
+            })
+        }, 4000);
+        
     }
 
     return (

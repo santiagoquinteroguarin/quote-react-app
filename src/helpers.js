@@ -1,6 +1,7 @@
 // * obtiene la diferencia de años
 export function getDifferenceYear(year) {
-    return new Date().getFullYear - year;
+    const date = new Date().getFullYear();
+    return date - Number(year);
 }
 
 // * calcula el total a pagar segun la marca
