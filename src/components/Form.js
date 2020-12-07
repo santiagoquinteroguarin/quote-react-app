@@ -48,6 +48,16 @@ const Button = styled.button`
     }
 `;
 
+// ?13.
+const Error = styled.div`
+    background-color: red;
+    color: #fff;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+`;
+
 // ?1.
 const Form = () => {
 
@@ -57,6 +67,9 @@ const Form = () => {
         year: '',
         plan: '',
     });
+
+    // ?12. 
+    const [error, setSavedError] = useState(false);
 
     // ?9.
     const { marca, year, plan } = data;
@@ -69,8 +82,41 @@ const Form = () => {
         })
     }
 
+    // ?12. when user click in submit button
+    const handleQuote = e => {
+        e.preventDefault();
+
+        if(marca.trim() === '' || year.trim() === '' || plan.trim() === '') {
+            setSavedError(true);
+            return;
+        }
+
+        setSavedError(false);
+
+        // ?13. obtener la diferencia entre años
+
+        // ?14. por cada año hay que restar el 3%
+
+        /* 
+            Americano: 15%
+            Asiatico: 5%
+            Europeo: 30%    
+        */
+
+        // ?16. Basico aumenta 20%
+
+        // ?17. Completo 50%
+
+
+        // ?18. Total
+
+    }
+
     return (
-        <form >
+        <form onSubmit={handleQuote}>
+
+            {error ? <Error>Todos los campos son obligatorios</Error> : null}
+
             <Field>
                 <Label>Marca</Label>
                 <Select
@@ -133,7 +179,7 @@ const Form = () => {
             </Field>
 
             <Button
-                type="button"
+                type="submit"
             >Cotizar</Button>
         </form>
     );
