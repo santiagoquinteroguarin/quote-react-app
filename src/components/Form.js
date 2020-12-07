@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+// ?13.
+import { getDifferenceYear, calculateBrand, getPlan } from '../helpers';
 
 // ?2.
 const Field = styled.div`
@@ -93,22 +95,28 @@ const Form = () => {
 
         setSavedError(false);
 
+        // base
+        let result = 2000;
+
         // ?13. obtener la diferencia entre años
+        const difference = getDifferenceYear(year);
 
         // ?14. por cada año hay que restar el 3%
+        result -= (( difference * 3) * result) / 100;
 
         /* 
             Americano: 15%
             Asiatico: 5%
             Europeo: 30%    
         */
+        result = calculateBrand(marca);
 
         // ?16. Basico aumenta 20%
+        // Completo 50%
+        const incrementPlan = getPlan(plan);
+        result = parseFloat(incrementPlan * result).toFixed(2);
 
-        // ?17. Completo 50%
-
-
-        // ?18. Total
+        // ?17. Total
 
     }
 
