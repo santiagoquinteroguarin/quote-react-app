@@ -61,7 +61,7 @@ const Error = styled.div`
 `;
 
 // ?1.
-const Form = () => {
+const Form = ({setSavedSummary}) => {
 
     // ?8. 
     const [data, setSAvedData] = useState({
@@ -117,7 +117,10 @@ const Form = () => {
         result = parseFloat(incrementPlan * result).toFixed(2);
 
         // ?17. Total
-
+        setSavedSummary({
+            quote: result,
+            data
+        })
     }
 
     return (

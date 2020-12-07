@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
+import Summary from './components/Summary';
 // ?1.
 import styled from '@emotion/styled';
 
@@ -16,15 +17,33 @@ const ContainerForm = styled.div`
 `;
 
 function App() {
+
+  const [summary, setSavedSummary] = useState({
+    quote: 0,
+    data: {
+      marca: '',
+      year: '',
+      plan: '',
+    }
+  });
+
+  const { data } = summary;
+
   return (
     // ?3.
     <Container>
       <Header 
         titleHeader="Cotizador de Seguros"
       />
-      
+
       <ContainerForm>
-        <Form/>
+        <Form
+          setSavedSummary={setSavedSummary}
+        />
+        
+        <Summary
+          data={data}
+        />
       </ContainerForm>
     </Container>
   );
