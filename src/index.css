@@ -24,7 +24,7 @@ span.result {
     transition: .5s;
 }
 
-.result-enter.result-enter-active{
+.result-enter .result-enter-active{
     transform: translateY(0%);
 }
 

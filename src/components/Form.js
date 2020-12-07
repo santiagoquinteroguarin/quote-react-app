@@ -124,7 +124,7 @@ const Form = ({setSavedSummary, setSavedLoading}) => {
 
             // ?17. Total - pasa la info al componente principal
             setSavedSummary({
-                quote: result,
+                quote: Number(result),
                 data
             })
         }, 4000);

@@ -33,7 +33,7 @@ const Result = ({quote}) => {
         : (
             <ResultQuote>
                 <TransitionGroup
-                    component="p"
+                    component="span"
                     className="result"
                 >
                     <CSSTransition
@@ -41,7 +41,7 @@ const Result = ({quote}) => {
                         key={quote}
                         timeout={{enter: 500, exit: 500}}
                     >
-                        <TextQuote>El total es: $ {quote}</TextQuote>
+                        <TextQuote>El total es: $ <span>{quote}</span></TextQuote>
                     </CSSTransition>
                 </TransitionGroup>
             </ResultQuote>
