@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 // ?2.
@@ -50,11 +50,35 @@ const Button = styled.button`
 
 // ?1.
 const Form = () => {
+
+    // ?8. 
+    const [data, setSAvedData] = useState({
+        marca: '',
+        year: '',
+        plan: '',
+    });
+
+    // ?9.
+    const { marca, year, plan } = data;
+
+    // ?11. read the data of form and place then in the state
+    const getInformation = e => {
+        setSAvedData({
+            ...data,
+            [e.target.name] : e.target.value
+        })
+    }
+
     return (
         <form >
             <Field>
                 <Label>Marca</Label>
-                <Select>
+                <Select
+                    // ?10.
+                    name="marca"
+                    value={marca}
+                    onChange={getInformation}
+                >
                     <option value="">-- Seleccione --</option>
                     <option value="americano">Americano</option>
                     <option value="europeo">Europeo</option>
@@ -64,7 +88,13 @@ const Form = () => {
             
             <Field>
                 <Label>Año</Label>
-                <Select>
+                <Select
+                    // ?10.
+                    name="year"
+                    value={year}
+                    // ?11.
+                    onChange={getInformation}
+                >
                     <option value="">-- Seleccione --</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
@@ -85,12 +115,20 @@ const Form = () => {
                     type="radio"
                     name="plan"
                     value="basico"
+                    // ?10.
+                    checked={plan === 'basico'}
+                    // ?11.
+                    onChange={getInformation}
                 /> Básico
 
                 <InputRadio
                     type="radio"
                     name="plan"
-                    value="basico"
+                    value="completo"
+                    // ?10.
+                    checked={plan === 'completo'}
+                    // ?11.
+                    onChange={getInformation}
                 /> Completo
             </Field>
 
